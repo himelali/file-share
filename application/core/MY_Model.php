@@ -4,10 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 abstract class MY_Model extends CI_Model {
 
-    public function __construct() {
-        parent::__construct();
-    }
-
     public function count($table, $where = FALSE) {
         if (!empty($where) && $where == TRUE) :
             foreach ($where as $key => $value) {
@@ -90,14 +86,40 @@ abstract class MY_Model extends CI_Model {
         }
     }
 
-    public function last_id($table, $primaryKey, $where = FALSE) {
-        $this->db->select("MAX($primaryKey) as id");
+    public function max($table, $field, $where = FALSE) {
+        $this->db->select_max($field, 'id');
         if (!empty($where) && $where == TRUE) :
             foreach ($where as $key => $value) {
                 $this->db->where($key, $value);
             }
         endif;
-        return (int) $this->db->get($table)->row()->id;
+        return $this->db->get($table)->row()->id;
+    }
+
+    public function min($table, $field, $where = FALSE) {
+        $this->db->select_min($field, 'id');
+        if (!empty($where) && $where == TRUE) :
+            foreach ($where as $key => $value) {
+                $this->db->where($key, $value);
+            }
+        endif;
+        return $this->db->get($table)->row()->id;
+    }
+
+    public function avg($table, $field, $where = FALSE) {
+        $this->db->select_avg($field, 'id');
+        if (!empty($where) && $where == TRUE) :
+            foreach ($where as $key => $value) {
+                $this->db->where($key, $value);
+            }
+        endif;
+        return $this->db->get($table)->row()->id;
+    }
+
+    public function exits($table, $where = FALSE) {
+        if($this->count($table, $where))
+            return TRUE;
+        return FALSE;
     }
 
 }
