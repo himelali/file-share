@@ -8,7 +8,7 @@
  */
 class Send_email {
 
-    CONST EMAIL_URL = 'https://api.elasticemail.com/v2/email/send';
+    private $url = 'https://api.elasticemail.com/v2/email/send';
 
     public function send($to, $body, $subject = 'File Uploaded Successfully') {
         try{
@@ -23,7 +23,7 @@ class Send_email {
             ];
             $ch = curl_init();
             curl_setopt_array($ch, [
-                CURLOPT_URL             => EMAIL_URL,
+                CURLOPT_URL             => $this->url,
                 CURLOPT_POST            => TRUE,
                 CURLOPT_POSTFIELDS      => $post,
                 CURLOPT_RETURNTRANSFER  => TRUE,
