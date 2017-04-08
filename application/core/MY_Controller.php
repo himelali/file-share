@@ -10,13 +10,11 @@ abstract class MY_Controller extends MX_Controller {
 	public function __construct() {
 		parent::__construct();		
         $this->form_validation->CI =& $this;
-
 		$this->data['error']        = $this->session->flashdata('error');
         $this->data['exception']    = $this->session->flashdata('exception');
         $this->data['success']      = $this->session->flashdata('success');
         $this->data['warning']      = $this->session->flashdata('warning');
         $this->data['notification'] = $this->session->flashdata('notification');
-
         $this->data['uri'] = [
             'segment1' => strtolower($this->uri->segment(1)),
             'segment2' => strtolower($this->uri->segment(2)),
@@ -24,20 +22,18 @@ abstract class MY_Controller extends MX_Controller {
             'segment4' => strtolower($this->uri->segment(4)),
             'segment5' => strtolower($this->uri->segment(5))
         ];
-
         $this->method = (string) strtolower($_SERVER['REQUEST_METHOD']);
 	}
 
-    protected function do_upload($size = 20480, $type = 'image') {
+    protected function do_upload($size = 102400, $type = 'image') {
         $config['upload_path'] = 'assets/files/';
-        if($type == 'image') {
+        if($type == 'image')
             $config['allowed_types'] = 'gif|jpg|png';
-        } else {
+        else
             $config['allowed_types'] = 'txt|gif|jpg|png|doc|docx|pdf|ppt|pptx|xls|xlsx|zip';
-        }
         $config['file_name'] = strtolower('FILE-'.uniqid()).rand(10000, 99999).'.'.pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
         $config['overwrite'] = false;
-        $config['max_size']	= $size;
+        $config['max_size']	 = $size;
         $this->load->library('upload', $config);
         if(!$this->upload->do_upload())
             return $this->upload->display_errors();

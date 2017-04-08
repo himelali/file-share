@@ -1,37 +1,124 @@
-<?php  defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap-theme.min.css"); ?>" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <script src="<?php echo base_url("assets/js/jquery-3.2.0.min.js"); ?>" crossorigin="anonymous"></script>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Welcome to File Share</title>
+    <meta name="generator" content="Bootstrap" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.min.css"); ?>" media="all">
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/fs-custome.css"); ?>" media="all">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap-theme.min.css"); ?>">
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/font-awesome.min.css"); ?>">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>"></script>
+    <!-- Latest compiled and minified jQuery 3.2.0 -->
+    <script src="<?php echo base_url("assets/js/jquery-3.2.0.min.js"); ?>"></script>
 </head>
 <body>
-
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-	</div>
-
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
-
+    <nav class="navbar navbar-bright navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav class="collapse navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                        <li><a href="<?php echo site_url(); ?>">Home</a></li>
+                    <?php if($this->session->userdata('isLogged')) { ?>
+                        <li><a href="<?php echo site_url("home/logout"); ?>">Logout</a></li>
+                    <?php } else { ?>
+                        <li><a href="<?php echo site_url("home/signup"); ?>">Sign Up</a></li>
+                        <li><a href="<?php echo site_url("home/signin"); ?>">Sign In</a></li>
+                    <?php }?>
+                </ul>
+                <ul class="nav navbar-right navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
+                        <ul class="dropdown-menu" style="padding:12px;">
+                            <form class="form-inline">
+                                <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
+                            </form>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+    <div id="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>File Share</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-3 text-center">
+                                <i class="fa fa-user fa-5x"></i>
+                            </div>
+                            <div class="col-md-10 col-sm-9">
+                                <h4>Repurpose Content to Reach a Wider Audience</h4>
+                                <div class="row">
+                                    <div class="col-xs-9">
+                                        <h4>
+                                            <span class="label label-default">97thfloor.com</span></h4><h4>
+                                            <small style="font-family:courier,'new courier';" class="text-muted">2 hours ago  • <a href="#" class="text-muted">Read More</a></small>
+                                        </h4>
+                                    </div>
+                                    <div class="col-xs-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <a href="#" class="btn btn-primary pull-right btnNext">More
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="footer">
+        <div class="row">
+            <div class="col col-sm-12">
+                <h3>Follow Us</h3>
+                <div class="btn-group">
+                    <a class="btn btn-facebook btn-lg" href="#"><i class="fa fa-facebook"></i> Facebook</a>
+                    <a class="btn btn-google-plus btn-lg" href="#"><i class="fa fa-google-plus"></i> Google+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-inline">
+                        <li><i class="fa fa-facebook fa-2x"></i></li>
+                        <li><i class="fa fa-google-plus fa-2x"></i></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right">Developed by Himel</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
