@@ -2,13 +2,14 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-abstract class MY_Controller extends CI_Controller {
+abstract class MY_Controller extends MX_Controller {
 
     protected $data   = [];
     protected $method = FALSE;
 
 	public function __construct() {
-		parent::__construct();
+		parent::__construct();		
+        $this->form_validation->CI =& $this;
 
 		$this->data['error']        = $this->session->flashdata('error');
         $this->data['exception']    = $this->session->flashdata('exception');
@@ -25,8 +26,6 @@ abstract class MY_Controller extends CI_Controller {
         ];
 
         $this->method = (string) strtolower($_SERVER['REQUEST_METHOD']);
-        $this->load->model("user_model", 'USER', TRUE);
-        $this->data['userInfo'] = $this->USER->select("shop_all_users", ["user_id" => $this->session->userdata("userId")], TRUE);
 	}
 
     protected function do_upload($size = 4096, $type = 'image') {
@@ -65,13 +64,6 @@ abstract class MY_Controller extends CI_Controller {
         if(isset($this->session->userdata[$key]) && $this->session->userdata[$key] === TRUE)
             return TRUE;
         return FALSE;
-    }
-
-    public function edit_unique($value, $params) {
-        $this->form_validation->set_message('edit_unique', "This %s is already in use!");
-        list($table, $field, $fieldName, $current_id) = explode(".", $params);
-        $result = $this->db->select("$fieldName as id")->where($field, $value)->get($table)->row();
-        return ($result && $result->id != $current_id) ? FALSE : TRUE;
     }
 	
     public function valid_mobile($value) {

@@ -23,8 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-
-$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/files';
+$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/dir';
 if($_SERVER['HTTP_HOST'] != 'localhost') {
     $config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'];
 }
@@ -526,8 +525,14 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
-$config['dev_name']      = "Md. Himel Ali";
-$config['dev_mobile']    = "+880 1710 437834";
-$config['dev_telephone'] = "";
-$config['dev_email']     = "himelali@gmail.com";
-$config['dev_url']       = "http://www.facebook.com/info.himel";
+
+
+/*
+|--------------------------------------------------------------------------
+| HMVC
+|--------------------------------------------------------------------------
+*/
+
+$config['modules_locations'] = array(
+    APPPATH.'modules/' => '../modules/',
+);
