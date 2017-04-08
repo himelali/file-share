@@ -28,8 +28,8 @@ abstract class MY_Controller extends MX_Controller {
         $this->method = (string) strtolower($_SERVER['REQUEST_METHOD']);
 	}
 
-    protected function do_upload($size = 4096, $type = 'image') {
-        $config['upload_path'] = 'files/';
+    protected function do_upload($size = 20480, $type = 'image') {
+        $config['upload_path'] = 'assets/files/';
         if($type == 'image') {
             $config['allowed_types'] = 'gif|jpg|png';
         } else {

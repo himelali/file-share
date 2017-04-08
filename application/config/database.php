@@ -7,7 +7,7 @@ $query_builder = TRUE;
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
-$dbname = '';
+$dbname = 'fileshare';
 $driver = 'pdo';
 
 $db['default'] = array(
